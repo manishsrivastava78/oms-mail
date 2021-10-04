@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: oms-mail
-  namespace: app
+  namespace: shared-domain
   labels:
     app: oms-mail
 spec:

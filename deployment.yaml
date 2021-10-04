@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: oms-customer
+  name: oms-mail
   namespace: app
   labels:
-    app: oms-customer
+    app: oms-mail
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: oms-customer
+      app: oms-mail
   template:
     metadata:
       labels:
-        app: oms-customer
+        app: oms-mail
     spec:
       containers:
-      - name: oms-customer
-        image: manishsrivastavaggn/oms-customers:changeMePlease
+      - name: oms-mail
+        image: manishsrivastavaggn/oms-mail:changeMePlease
         ports:
         - containerPort: 8080
    

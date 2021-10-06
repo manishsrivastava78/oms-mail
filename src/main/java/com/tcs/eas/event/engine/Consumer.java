@@ -110,7 +110,7 @@ public class Consumer implements Constants {
 	 * @return
 	 */
 	private String getMailBody(MailData mailData) {
-		LOGGER.info("In getMailBody");
+		LOGGER.info("In getMailBody consumer");
 		Customer customer = mailData.getCustomer();
 		Product product = mailData.getProduct();
 		switch (mailData.getMailTemplate()) {

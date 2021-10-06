@@ -124,7 +124,7 @@ public class Consumer implements Constants {
 			return getOrderConfirmationContent(orderConfirmation);
 		case 2:
 			ShippingConfirmation1 shippingConfirmation = new ShippingConfirmation1(customer, mailData.getOrderId(),
-					mailData.getDop().toString(), mailData.getTrackingNumber(), product,mailData.getStatus());
+					mailData.getDop().toString(), mailData.getTrackingNumber(), product,"Shipped");
 			this.subject = SHIPMENT_MAIL_SUBJECT;
 			return getShippingConfirmationContent(shippingConfirmation);
 		case 3:

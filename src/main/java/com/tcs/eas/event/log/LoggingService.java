@@ -13,6 +13,8 @@ public interface LoggingService {
     
     void logError(String errorMessage); 
     
+    void logInfo(String infoMessage); 
+    
     void clearMDC(); 
     
 }

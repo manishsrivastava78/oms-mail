@@ -153,4 +153,8 @@ public class LoggingServiceImpl extends MdcLogging implements LoggingService {
 		LOGGER.error("Error: "+errorMessage,HTTP_STATUS_500);
 	}
 
+	@Override
+	public void logInfo(String infoMessage) {
+		LOGGER.info("Info: "+infoMessage);
+	}
 }

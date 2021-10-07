@@ -2,7 +2,6 @@ package com.tcs.eas.event.engine;
 
 import java.io.IOException;
 import java.io.StringWriter;
-import java.sql.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +14,7 @@ import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
 import com.tcs.eas.event.constant.Constants;
+import com.tcs.eas.event.log.LoggingService;
 import com.tcs.eas.event.model.Customer;
 import com.tcs.eas.event.model.MailData;
 import com.tcs.eas.event.model.OrderConfirmation1;
@@ -31,6 +31,9 @@ public class Consumer implements Constants {
 
 	@Autowired
 	MailService mailService;
+	
+	@Autowired
+	LoggingService loggingService;
 
 	/**
 	 * 
@@ -39,7 +42,7 @@ public class Consumer implements Constants {
 
 	@KafkaListener(topics = "${KAFKA_MAIL_TOPIC}", groupId = "${KAFKA_MAIL_TOPIC_CLIENT_GROUP_ID}")
 	public void consume(String message) throws IOException {
-		LOGGER.info("In mail consumer...");
+		loggingService.logInfo("In mail consumer...");
 		ObjectMapper objectMapper = new ObjectMapper();
 		MailData mailData = objectMapper.readValue(message, MailData.class);
 		mailService.setToAddress(mailData.getCustomer().getEmail());
@@ -49,7 +52,7 @@ public class Consumer implements Constants {
 			mailService.sendMail();
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			loggingService.logError("Caught error:"+e1);
 		}
 	}
 
@@ -82,7 +85,7 @@ public class Consumer implements Constants {
 		try {
 			m.execute(writer, shippingConfirmation).flush();
 		} catch (IOException e) {
-			e.printStackTrace();
+			loggingService.logError("Caught error:"+e);
 		}
 		return writer.toString();
 	}
@@ -99,8 +102,7 @@ public class Consumer implements Constants {
 		try {
 			m.execute(writer, orderDeliveryConfirmation).flush();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			loggingService.logError("Caught error:"+e);
 		}
 		return writer.toString();
 	}

@@ -2,6 +2,7 @@ package com.tcs.eas.event.engine;
 
 import java.io.IOException;
 import java.io.StringWriter;
+import java.sql.Date;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -85,7 +86,7 @@ public class Consumer implements Constants {
 		}
 		return writer.toString();
 	}
-
+	
 	/**
 	 * 
 	 * @param orderDeliveryConfirmation

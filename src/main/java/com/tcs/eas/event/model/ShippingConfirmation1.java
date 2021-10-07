@@ -1,13 +1,18 @@
 package com.tcs.eas.event.model;
 
-public class ShippingConfirmation1 {
+import java.io.Serializable;
+
+public class ShippingConfirmation1 implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4744486309005466141L;
 	private Customer customer;
 	private int orderId;
 	private String dop;
 	private String trackingNumber;
 	private Product product;
-	private String status;
-	
+	private String orderStatus;
 	/**
 	 * 
 	 * @param customer
@@ -16,15 +21,34 @@ public class ShippingConfirmation1 {
 	 * @param trackingNumber
 	 * @param product
 	 */
-	public ShippingConfirmation1(Customer customer, int orderId, String dop, String trackingNumber, Product product, String status) {
+	public ShippingConfirmation1(Customer customer, int orderId, String dop, String trackingNumber, Product product, String orderStatus) {
 		super();
 		this.customer = customer;
 		this.orderId = orderId;
 		this.dop = dop;
 		this.trackingNumber = trackingNumber;
 		this.product = product;
-		this.status = status;
+		this.orderStatus = orderStatus;
 	}
+
+
+	
+	/**
+	 * @return the orderStatus
+	 */
+	public String getOrderStatus() {
+		return orderStatus;
+	}
+
+
+
+	/**
+	 * @param orderStatus the orderStatus to set
+	 */
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
+	}
+
 
 
 	/**
@@ -43,22 +67,7 @@ public class ShippingConfirmation1 {
 	}
 
 
-	/**
-	 * @return the status
-	 */
-	public String getStatus() {
-		return status;
-	}
-
-
-
-
-	/**
-	 * @param status the status to set
-	 */
-	public void setStatus(String status) {
-		this.status = status;
-	}
+	
 
 
 	/**
